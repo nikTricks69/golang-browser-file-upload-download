@@ -5,5 +5,10 @@
  Start with
 
  ```
- go run main.go
+ go run main.go -p 8180 -f c://temp
+
+-p port to listen to (8080 default)
+-f the local folder to use for upload and download (default .)
  ```
+ 
+ http://localhost:8080/upload
