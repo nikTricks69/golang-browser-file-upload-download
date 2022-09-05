@@ -12,13 +12,19 @@ import (
 	"path/filepath"
 )
 
-func main() {
-	portPtr := flag.Int("p", 8080, "port number")
-	sharedFolder := flag.String("f", ".", "local folder path for upload and download")
-	uploadPath := *sharedFolder
-	port := *portPtr
-	http.HandleFunc("/upload", uploadFileHandler(uploadPath))
+var port int
+var uploadPath string
 
+func init() {
+	flag.IntVar(&port, "p", 8080, "port number")
+	flag.StringVar(&uploadPath, "f", ".", "local folder path for upload and download")
+	flag.Parse()
+	log.Printf("Init complete")
+}
+func main() {
+	log.Printf("starting server")
+
+	http.HandleFunc("/upload", uploadFileHandler(uploadPath))
 	fs := http.FileServer(http.Dir(uploadPath))
 	http.Handle("/files/", http.StripPrefix("/files", fs))
 
