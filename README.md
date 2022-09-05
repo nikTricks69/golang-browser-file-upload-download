@@ -12,3 +12,10 @@
  ```
  
  http://localhost:8080/upload
+
+ # Docker
+
+ docker build -t simple-http-file-server .
+
+ docker run --rm  -p 8182:8182 -v c://temp:/shares  simple-http-file-server
+

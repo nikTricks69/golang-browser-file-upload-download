@@ -68,7 +68,8 @@ func uploadFileHandler(uploadPath string) http.HandlerFunc {
 			renderError(w, "CANT_WRITE_FILE", http.StatusInternalServerError)
 			return
 		}
-		w.Write([]byte("SUCCESS"))
+		http.Redirect(w, r, "/files", 301)
+		//w.Write([]byte("SUCCESS"))
 	})
 }
 
