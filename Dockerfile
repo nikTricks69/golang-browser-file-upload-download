@@ -5,6 +5,8 @@ RUN chmod 777 /shares
 
 WORKDIR /usr/src/app
 COPY . .
+
+RUN chmod +x ./run.sh
 RUN go build -v -o /usr/local/bin/app ./...
 
 RUN adduser -D -u 3977 nj
